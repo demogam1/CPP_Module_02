@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 17:19:38 by misaev            #+#    #+#             */
-/*   Updated: 2022/03/18 12:10:12 by misaev           ###   ########.fr       */
+/*   Updated: 2022/03/18 14:43:52 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,33 @@ Fixed::Fixed()
     return;
 }
 
-Fixed::Fixed(const Fixed &p)
+Fixed::Fixed(Fixed const &p)
 {
     std::cout << "Copy constructor called\n";
     this->fix = p.fix;
-    this->nbr_bit = p.nbr_bit;
 }
 
 Fixed::Fixed(int const a)
 {
+    std::cout << "Int constructor called\n";
     this->fix = a << this->nbr_bit;
 }
 
 Fixed::Fixed(float const b)
 {
-    this->fix = (uint16_t)(roundf(b * (1 << this->nbr_bit)));
+    std::cout << "Float constructor called\n";
+    this->fix = (round(b * (1 << this->nbr_bit)));
 }
 
 int Fixed::getRawBits(void) const
 {
     std::cout << "getRawBits member function called\n";
     return this->fix;   
+}
+
+void Fixed::setRawBits(int const raw)
+{
+    this->fix = raw;
 }
 
 int Fixed::toInt(void) const
@@ -54,15 +60,11 @@ float Fixed::toFloat(void) const
     return ((float)this->fix / (float)(1 << this->nbr_bit));
 }
 
-void Fixed::setRawBits(int const raw)
-{
-    this->fix = raw;
-}
 
 void Fixed::operator=(const Fixed &p)
 {
     std::cout << "Copy assignment operator called\n";
-    this->fix = p.getRawBits();
+    this->fix = p.fix;
     this->nbr_bit = p.nbr_bit;
 }
 
@@ -70,4 +72,10 @@ Fixed::~Fixed()
 {
     std::cout << "Destructor called\n";
     return;
+}
+
+std::ostream &operator<<(std::ostream &b, Fixed const &c)
+{
+    b << c.toFloat();
+    return b;
 }
