@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 17:19:38 by misaev            #+#    #+#             */
-/*   Updated: 2022/03/21 17:03:20 by misaev           ###   ########.fr       */
+/*   Updated: 2022/03/21 17:36:03 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,6 @@ Fixed::Fixed()
     return;
 }
 
-Fixed::Fixed(Fixed const &p)
-{
-    this->fix = p.fix;
-}
-
 Fixed::Fixed(int const a)
 {
     this->fix = a << this->nbr_bit;
@@ -32,7 +27,7 @@ Fixed::Fixed(int const a)
 
 Fixed::Fixed(float const b)
 {
-    this->fix = (round(b * (1 << this->nbr_bit)));
+    this->fix = (int)(round(b * (1 << this->nbr_bit)));
 }
 
 int Fixed::getRawBits(void) const
@@ -74,12 +69,12 @@ Fixed Fixed::operator-(const Fixed &p) const
 
 Fixed Fixed::operator*(const Fixed &p) const
 {
-    return Fixed(this->fix * p.getRawBits());
+    return this->toFloat() * p.toFloat();
 }
 
 Fixed Fixed::operator/(const Fixed &p) const
 {
-    return Fixed(this->fix / p.getRawBits());
+    return this->toFloat() / p.toFloat();
 }
 
 bool Fixed::operator!=(const Fixed &p) const

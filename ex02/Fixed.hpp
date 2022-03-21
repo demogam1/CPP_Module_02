@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 16:33:09 by misaev            #+#    #+#             */
-/*   Updated: 2022/03/21 15:41:01 by misaev           ###   ########.fr       */
+/*   Updated: 2022/03/21 17:30:22 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ class Fixed
         Fixed();
         Fixed(int const a);
         Fixed(float const b);
-        Fixed(const Fixed &p);
         float toFloat( void ) const;
         int toInt( void ) const;
         void operator=(const Fixed &p);
