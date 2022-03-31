@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 17:19:38 by misaev            #+#    #+#             */
-/*   Updated: 2022/03/21 17:36:03 by misaev           ###   ########.fr       */
+/*   Updated: 2022/03/31 13:04:24 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,11 @@ float Fixed::toFloat(void) const
 }
 
 /* SURCHARGE OPERATEUR */
-void Fixed::operator=(const Fixed &p)
+Fixed &Fixed::operator=(const Fixed &p)
 {
     this->fix = p.fix;
     this->nbr_bit = p.nbr_bit;
+    return *this;
 }
 
 Fixed Fixed::operator+(const Fixed &p) const
